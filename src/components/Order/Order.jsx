@@ -8,7 +8,7 @@ export const Order = ({ item, onDelete }) => {
       <img src={item.img} alt={item.name} />
       <div className={styles.info}>
         <h4>{item.name}</h4>
-        <p>10000 руб</p>
+        <p>{item.price} руб</p>
       </div>
       <MdDelete  className={styles.closeBtn} onClick={() => onDelete(item)}/>
     </div>

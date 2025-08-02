@@ -7,7 +7,7 @@ export const Item = ({ item, addToOrder }) => {
       <img src={item.img} alt={item.name} />
       <div className={styles.info}>
         <h4>{item.name}</h4>
-        <p>10000 руб</p>
+        <p>{item.price} руб</p>
         <div className={styles.addBtn}  onClick={() => addToOrder(item)}>+</div>  
       </div>
     </div>
