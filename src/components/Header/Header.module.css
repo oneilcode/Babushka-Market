@@ -1,3 +1,7 @@
+.header {
+    position:  relative;
+}
+
 .logo {
     font-weight: 600;
     font-size: 20px;
@@ -39,4 +43,30 @@
 
 .nav li:hover {
    opacity: .5;
+}
+
+.shopCart {
+    float: right;
+    cursor: pointer;
+    transition: color, transform .5s ease;
+}
+
+.shopCart:hover {
+    color: #dc3d3d;
+    transform: scale(1.2);
+}
+
+.active {
+    color: #dc3d3d;
+    transform: scale(1.2);
+}
+
+.cartInfo {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    width: 450px;
+    min-height: 100px;
+    background-color: #fafafa;
+    z-index: 10;
 }
