@@ -33,14 +33,19 @@ function App() {
 
     if (!isAlreadyAdded) {
       setOrders([...orders, item])
+      // alert("Товар добавлен в корзину")
     } else {
       alert("Этот товар уже добавлен!")
     }  
   }
 
+  const deleteOrder = (item) => {   
+    setOrders(orders.filter(order => order.id !== item.id))   
+  }
+
   return (
     <div className="wrapper">
-     <Header orders={orders} />
+     <Header orders={orders} onDelete={deleteOrder}/>
      <ItemsWrapper items={items}  addToOrder={addToOrder}/>
      <Footer />
     </div>

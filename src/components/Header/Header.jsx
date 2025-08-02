@@ -4,9 +4,7 @@ import { BsCartFill  } from "react-icons/bs";
 import { Order } from '../Order/Order';
 
 export const Header = (props) => {
-  console.log(props);
-  
-  let [openCart, setOpenCart] = useState(false)
+let [openCart, setOpenCart] = useState(false)
 
   return (
     <header className={styles.header}>
@@ -26,7 +24,7 @@ export const Header = (props) => {
                 {props.orders.length <= 0 && <p>Корзина пуста</p>}
 
                 {props.orders.map((el) => {
-                  return <Order key={el.name} item={el}/>
+                  return <Order key={el.name} item={el} onDelete={props.onDelete}/>
                 })}
               </div>
           )}
