@@ -1,0 +1,42 @@
+.logo {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.presentation {
+    margin: 50px 0;
+    background: url('/presentation.webp') no-repeat;
+    width: 100%;
+    height: 500px;
+    background-size: cover;
+    background-position: center center;
+    background-blend-mode: multiply;
+    background-color: #bcbcbc;
+    position: relative;
+}
+
+.presentation::after {
+    content: "Best items for your home";
+    position: absolute;
+    top: 100px;
+    left: 50px;
+    width: 300px;
+    font-size: 40px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.nav {
+    float: right;
+}
+
+.nav li {
+    display: inline;
+    margin-left: 25px;
+    cursor: pointer;
+    transition: opacity .5s ease;
+}
+
+.nav li:hover {
+   opacity: .5;
+}
