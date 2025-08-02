@@ -27,7 +27,7 @@ let [openCart, setOpenCart] = useState(false)
   return (
     <header className={styles.header}>
       <div>
-        <span className={styles.logo}>MeowShop</span>
+        <span className={styles.logo}>Бабушкин Гараж</span>
         <ul className={styles.nav}>
           <li>Про нас</li>
           <li>Контакты</li>
