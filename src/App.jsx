@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Footer } from "./components/Footer/Footer"
 import { Header } from "./components/Header/Header"
 import { ItemsWrapper } from "./components/ItemsWrapper/ItemsWrapper"
@@ -23,13 +24,24 @@ const items = [
 
   },
 ]
-function App() {
 
+function App() {
+  const [orders, setOrders] = useState([])
+
+  const addToOrder = (item) => {
+    const isAlreadyAdded = orders.filter(order => order.id === item.id).length > 0
+
+    if (!isAlreadyAdded) {
+      setOrders([...orders, item])
+    } else {
+      alert("Этот товар уже добавлен!")
+    }  
+  }
 
   return (
     <div className="wrapper">
-     <Header />
-     <ItemsWrapper items={items} />
+     <Header orders={orders} />
+     <ItemsWrapper items={items}  addToOrder={addToOrder}/>
      <Footer />
     </div>
   )

@@ -1,6 +1,6 @@
-import styles from './Item.module.css';
+import styles from './Order.module.css';
 
-export const Item = ({ item, addToOrder }) => {
+export const Order = ({ item }) => {
 
   return (
     <div className={styles.item}>
@@ -8,7 +8,6 @@ export const Item = ({ item, addToOrder }) => {
       <div className={styles.info}>
         <h4>{item.name}</h4>
         <p>10000 руб</p>
-        <div className={styles.addBtn}  onClick={() => addToOrder(item)}>+</div>  
       </div>
     </div>
   )     

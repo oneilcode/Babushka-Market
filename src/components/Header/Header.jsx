@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import styles from './Header.module.css';
 import { BsCartFill  } from "react-icons/bs";
+import { Order } from '../Order/Order';
 
-export const Header = () => {
+export const Header = (props) => {
+  console.log(props);
+  
   let [openCart, setOpenCart] = useState(false)
 
   return (
@@ -18,7 +21,14 @@ export const Header = () => {
         <BsCartFill  onClick={() => setOpenCart(!openCart)} className={`${styles.shopCart} ${openCart && styles.active}`}/>
 
           {openCart && (
-              <div className={styles.cartInfo}>123</div>
+              <div className={styles.cartInfo}>
+
+                {props.orders.length <= 0 && <p>Корзина пуста</p>}
+
+                {props.orders.map((el) => {
+                  return <Order key={el.name} item={el}/>
+                })}
+              </div>
           )}
 
       </div>

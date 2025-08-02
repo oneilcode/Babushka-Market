@@ -1,0 +1,22 @@
+.item {
+    width: 100%;
+   
+    img {
+        width: 70px;
+        float: left;
+        margin-right: 20px;
+    }
+
+    .info {
+
+        h4 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            color:  green;
+            font-weight: 600;
+        }
+    }
+}
+
