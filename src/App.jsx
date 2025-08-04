@@ -1,7 +1,8 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Footer } from "./components/Footer/Footer"
 import { Header } from "./components/Header/Header"
 import { ItemsWrapper } from "./components/ItemsWrapper/ItemsWrapper"
+import { Categories } from "./components/Categories/Categories"
 
 const items = [
   {
@@ -56,6 +57,22 @@ const items = [
 
 function App() {
   const [orders, setOrders] = useState([])
+  const [categories, setCategories] = useState([])
+  const [selectedCategory, setSelectedCategory] = useState("Все")
+
+  const filteredItems = selectedCategory === "Все" 
+  ? items 
+  : items.filter(item => item.category === selectedCategory);
+
+  const fetchCategories = () => {
+    const categories = [...new Set(items.map(item => item.category))]
+      setCategories(["Все", ...categories])    
+  }
+
+  useEffect(() => {
+    fetchCategories()
+  }, [])
+
 
   const addToOrder = (item) => {
     const isAlreadyAdded = orders.filter(order => order.id === item.id).length > 0
@@ -75,7 +92,8 @@ function App() {
   return (
     <div className="wrapper">
      <Header orders={orders} onDelete={deleteOrder}/>
-     <ItemsWrapper items={items}  addToOrder={addToOrder}/>
+     <Categories categories={categories} setSelectedCategory={setSelectedCategory} selectedCategory={selectedCategory}/>
+     <ItemsWrapper items={filteredItems}  addToOrder={addToOrder}/>
      <Footer />
     </div>
   )
