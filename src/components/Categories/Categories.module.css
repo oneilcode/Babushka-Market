@@ -1,0 +1,26 @@
+.categories {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.category {
+    background: #f2f2f2;
+    border-radius: 50px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: transform .5s ease;
+}
+
+.active {
+    border: 1px solid silver;
+    font-weight: bold;
+    cursor: default;
+}
+
+.category:hover {
+    border-color: silver;
+    transform: scale(1.1);
+}
