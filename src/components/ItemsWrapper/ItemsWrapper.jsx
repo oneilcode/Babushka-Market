@@ -1,11 +1,11 @@
 import { Item } from '../Item/Item';
 import styles from './ItemsWrapper.module.css';
 
-export const ItemsWrapper = ({ items, addToOrder }) => {
+export const ItemsWrapper = ({ items, addToOrder, onClickShowModal }) => {
   return (
     <main className={styles.main}>
       {items.map(item => {
-         return <Item key={item.id} item={item} addToOrder={addToOrder} />
+         return <Item key={item.id} item={item} addToOrder={addToOrder} onClickShowModal={onClickShowModal} />
       })}
         
     </main>

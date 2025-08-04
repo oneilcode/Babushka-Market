@@ -3,6 +3,7 @@ import { Footer } from "./components/Footer/Footer"
 import { Header } from "./components/Header/Header"
 import { ItemsWrapper } from "./components/ItemsWrapper/ItemsWrapper"
 import { Categories } from "./components/Categories/Categories"
+import { ShowFullItem } from "./components/ShowFullItem/ShowFullItem"
 
 const items = [
   {
@@ -59,6 +60,8 @@ function App() {
   const [orders, setOrders] = useState([])
   const [categories, setCategories] = useState([])
   const [selectedCategory, setSelectedCategory] = useState("Все")
+  const [isModalOpen, setModalOpen] = useState(false)
+  const [fillItem, setFullItem] = useState({})
 
   const filteredItems = selectedCategory === "Все" 
   ? items 
@@ -89,11 +92,33 @@ function App() {
     setOrders(orders.filter(order => order.id !== item.id))   
   }
 
+  const onClickShowModal = (item) => {  
+    setFullItem(item) 
+    setModalOpen(!isModalOpen)  
+  }
+
+  useEffect(() => {
+    const body = document.body;
+    
+    if (isModalOpen) {
+      body.style.overflow = 'hidden';
+    } else {
+      body.style.overflow = 'auto'; // или ''
+    }
+  
+    return () => {
+      body.style.overflow = 'auto'; // Очистка при размонтировании
+    };
+  }, [isModalOpen]);
+
   return (
     <div className="wrapper">
      <Header orders={orders} onDelete={deleteOrder}/>
      <Categories categories={categories} setSelectedCategory={setSelectedCategory} selectedCategory={selectedCategory}/>
-     <ItemsWrapper items={filteredItems}  addToOrder={addToOrder}/>
+     <ItemsWrapper items={filteredItems}  addToOrder={addToOrder} onClickShowModal={onClickShowModal} />
+
+     {isModalOpen && <ShowFullItem item={fillItem} addToOrder={addToOrder} onClickShowModal={onClickShowModal}/>}
+
      <Footer />
     </div>
   )

@@ -2,8 +2,10 @@ import styles from './Footer.module.css';
 
 export const Footer = () => {
   return (
-    <header className={styles.footer}>
+    <footer className={styles.footer}>
         Все права защищены
-    </header>
+        <br />
+        <span> <b>Babushka Market</b> by Viktoria O'Neil</span>
+    </footer>
   );
 };
