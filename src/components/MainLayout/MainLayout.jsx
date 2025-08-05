@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import { Header } from '../Header/Header';
 import { useState } from 'react';
 import { Footer } from '../Footer/Footer';
+import { toast, ToastContainer } from 'react-toastify';
 
 export const MainLayout = () => {
    const [orders, setOrders] = useState([])
@@ -10,8 +11,10 @@ export const MainLayout = () => {
   
       if (!isAlreadyAdded) {
         setOrders([...orders, item])
+        toast.success(`Товар ${item.name} добавлен в корзину`);
       } else {
-        alert("Этот товар уже добавлен!")
+        // alert("Этот товар уже добавлен!")
+        toast.warning("Этот товар уже добавлен");
       }  
     }
   
@@ -21,6 +24,7 @@ export const MainLayout = () => {
       
   return (
         <div className="wrapper">
+            <ToastContainer />
             <Header  orders={orders} onDelete={deleteOrder}/>
             <Outlet context={{ addToOrder }} />
             <Footer/>

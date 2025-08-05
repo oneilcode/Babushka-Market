@@ -38,11 +38,11 @@ export const HomePage = () => {
       if (isModalOpen) {
         body.style.overflow = 'hidden';
       } else {
-        body.style.overflow = 'auto'; // или ''
+        body.style.overflow = 'auto'; 
       }
     
       return () => {
-        body.style.overflow = 'auto'; // Очистка при размонтировании
+        body.style.overflow = 'auto'; 
       };
     }, [isModalOpen]);
 
