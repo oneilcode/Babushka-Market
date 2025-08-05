@@ -9,6 +9,7 @@
         height: 300px;
         object-fit: cover;
         transition: transform .5s ease;
+        cursor: pointer;
     }
 
     img:hover {
