@@ -1,6 +1,21 @@
+import type { FC } from 'react';
 import styles from './Item.module.css';
 
-export const Item = ({ item, addToOrder, onClickShowModal }) => {
+export interface IItem {
+  id:  string | number,
+  img: string,
+  name: string,
+  price: number,
+  description?: string,
+}
+
+interface IItemProps {
+  item: IItem,
+  addToOrder: (item: IItem) => void,
+  onClickShowModal: (item: IItem) => void,
+}
+
+export const Item:FC<IItemProps> = ({ item, addToOrder, onClickShowModal }) => {
 
   return (
     <div className={styles.item}>

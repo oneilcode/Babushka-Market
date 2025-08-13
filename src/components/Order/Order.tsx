@@ -1,7 +1,14 @@
+import type { FC } from 'react';
 import styles from './Order.module.css';
 import { MdDelete } from "react-icons/md";
+import type { IItem } from '../Item/Item';
 
-export const Order = ({ item, onDelete }) => {
+export interface IOrderProps {
+  item: IItem,
+  onDelete: (item: IItem) => void,
+}
+
+export const Order:FC<IOrderProps> = ({ item, onDelete }) => {
 
   return (
     <div className={styles.item}>

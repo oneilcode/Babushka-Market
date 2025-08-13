@@ -1,13 +1,20 @@
-import { useState } from 'react';
+import { useState, type FC } from 'react';
 import styles from './Header.module.css';
 import { BsCartFill  } from "react-icons/bs";
-import { Order } from '../Order/Order';
+import { Order, type IOrderProps } from '../Order/Order';
 import { Link } from 'react-router-dom';
+import type { IItem } from '../Item/Item';
 
-export const Header = (props) => {
-let [openCart, setOpenCart] = useState(false)
+interface IHeaderProps {
+  onDelete: (item: IItem) => void;
+  orders: IItem[];
 
-const showOrders = (props) => {
+}
+
+export const Header:FC<IHeaderProps> = (props) => {
+let [openCart, setOpenCart] = useState<boolean>(false)
+
+const showOrders = (props: IHeaderProps) => {
   let total = 0
 
   let totalSum = props.orders.reduce((acc, res) => {

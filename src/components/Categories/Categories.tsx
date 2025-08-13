@@ -1,6 +1,13 @@
+import type { FC } from 'react';
 import styles from './Categories.module.css';
 
-export const Categories = ({ categories, setSelectedCategory, selectedCategory }) => {
+interface ICategoriesProps {
+  categories: string[],
+  selectedCategory: string,
+  setSelectedCategory: (category: string) => void;
+}
+
+export const Categories:FC<ICategoriesProps> = ({ categories, setSelectedCategory, selectedCategory }) => {
   return (   
     <ul className={styles.categories}>
       {categories.map((category) => {

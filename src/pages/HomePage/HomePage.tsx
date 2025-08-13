@@ -1,18 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import { Categories } from '../../components/Categories/Categories';
 import { ItemsWrapper } from '../../components/ItemsWrapper/ItemsWrapper';
 import { ShowFullItem } from '../../components/ShowFullItem/ShowFullItem';
 import { useOutletContext } from 'react-router-dom';
 import styles from './HomePage.module.css';
 import { items } from '../../assets/data';
+import type { IItem } from '../../components/Item/Item';
+
+interface OutletContext {
+  addToOrder: (item: IItem) => void;
+}
 
 export const HomePage = () => {
-    const [categories, setCategories] = useState([])
-    const [selectedCategory, setSelectedCategory] = useState("Все")
-    const [isModalOpen, setModalOpen] = useState(false)
-    const [fillItem, setFullItem] = useState({})
+    const [categories, setCategories] = useState<string[]>([])
+    const [selectedCategory, setSelectedCategory] = useState<string>("Все")
+    const [isModalOpen, setModalOpen] = useState<boolean>(false)
+    const [fullItem, setFullItem] = useState<IItem | null>(null)
   
-    const { addToOrder } = useOutletContext();
+    const { addToOrder } = useOutletContext<OutletContext>();
 
     const filteredItems = selectedCategory === "Все" 
     ? items
@@ -27,7 +32,7 @@ export const HomePage = () => {
       fetchCategories()
     }, [])
 
-    const onClickShowModal = (item) => {  
+    const onClickShowModal = (item: IItem) => {  
       setFullItem(item) 
       setModalOpen(!isModalOpen)  
     }
@@ -46,14 +51,12 @@ export const HomePage = () => {
       };
     }, [isModalOpen]);
 
-
   return (
     <>
         <div className={styles.presentation}></div>
         <Categories categories={categories} setSelectedCategory={setSelectedCategory} selectedCategory={selectedCategory}/>
         <ItemsWrapper items={filteredItems}  addToOrder={addToOrder} onClickShowModal={onClickShowModal} />
-
-        {isModalOpen && <ShowFullItem item={fillItem} addToOrder={addToOrder} onClickShowModal={onClickShowModal}/>}
+        {isModalOpen && fullItem && <ShowFullItem item={fullItem} addToOrder={addToOrder} onClickShowModal={() => setModalOpen(!isModalOpen)}/>}
     </>
   );
 };

@@ -1,12 +1,19 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, type FC } from 'react';
 import styles from './ShowFullItem.module.css';
+import type { IItem } from '../Item/Item';
 
-export const ShowFullItem = ({ item, addToOrder, onClickShowModal }) => {
-  const modalRef = useRef();
+interface IShowFullItemProps {
+  item: IItem,
+  addToOrder: (item: IItem) => void,
+  onClickShowModal: () => void,
+}
+
+export const ShowFullItem:FC<IShowFullItemProps> = ({ item, addToOrder, onClickShowModal }) => {
+  const modalRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
+    const handleClickOutside = (event:MouseEvent) => {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
         onClickShowModal();
       }
     };
